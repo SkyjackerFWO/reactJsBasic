@@ -3,35 +3,53 @@ import React from "react";
 class MyComponent extends React.Component{
 
     state = {
-        name : `Eric`,
-        channel : `HoidanIT`
+        fristName : '',
+        lastName : ''
+      
     };
 
-    handleOnChangeName = (event) =>{
+    handleChangeFirstName = (event) =>{
         this.setState({
-            name : event.target.value
+            fristName: event.target.value
         })
     };
 
-    handleClickButton = () =>{
-        console.log(`hit the button`)
-        alert(`click me`)
+    handleChangeLastName = (event) =>{
+        this.setState({
+            lastName: event.target.value
+        })
     };
 
+    handleSubmit = (event) =>{
+        event.preventDefault()
+        alert("Ban da an submit thanh cong")
+    }
+
     render() {
+        console.log(`Call render >>>`, this.state);
         return (
             <>
-                <div className = "frist">
-                    <input value={this.state.name} type="text"
-                        onChange={(event) => this.handleOnChangeName(event)}
+                <div>
+                    Hello HTML Form
+                </div>
+                <form>
+                    <label htmlFor="fname">First name:</label><br/>
+                    <input 
+                        type="text"  
+                        value={this.state.fristName}
+                        onChange = {(event) => this.handleChangeFirstName(event)} 
+                    /><br/>
+                    <label htmlFor="lname">Last name:</label><br/>
+                    <input 
+                        type="text"  
+                        value={this.state.lastName}
+                        onChange = {(event => this.handleChangeLastName(event))}
+                    /><br/><br/>
+                    <input
+                        type="submit" 
+                        onClick = {(event) => this.handleSubmit(event)}
                     />
-                </div>
-                <div className="second">
-                    My youtube channel : {this.state.name}
-                </div>
-                <div className="third">
-                    <button onClick={() => this.handleClickButton()}>Click me</button>
-                </div>
+                </form>
             </>
         )
     };
